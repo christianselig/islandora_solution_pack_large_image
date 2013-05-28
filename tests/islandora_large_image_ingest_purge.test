@@ -68,7 +68,7 @@ class IslandoraLargeImageIngestTestCase extends IslandoraCollectionWebTestCase {
       );
     $this->drupalPost($path, $edit, t('Ingest'));
     $this->assertText('New Object', 'Large image object was created', 'Islandora');
-    $object = $this->getObjectFromPath($this->url);
+    $object = $this->getPidFromPath($this->url);
     $this->assertRaw('/datastream/JPG/view', 'JPG datastream visible on View page', 'Islandora');
 
     // Determines whether or not the appropriate datastreams were created.

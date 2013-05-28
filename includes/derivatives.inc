@@ -155,7 +155,7 @@ function islandora_large_image_create_TN_derivative(AbstractFedoraObject $object
  *   Additional args for kdu_compress, if not provided reasonable defaults
  *   will be used.
  *
- * @return mixed
+ * @return
  *   Returns the newly generated file uri or FALSE if the conversion failed
  */
 function islandora_large_image_kdu_compress($src, $dest, $args = NULL) {
@@ -224,8 +224,10 @@ function islandora_large_image_kdu_compress($src, $dest, $args = NULL) {
  *   The source file uri to convert from.
  * @param string $dest
  *   The destination file uri to convert into.
- * @param array $args
- *   An array of arguments to be passed into image magick.
+ * @param int $width
+ *   The source file to convert from.
+ * @param int $height
+ *   The destination file to convert into.
  *
  * @return string
  *   The destination file path if successful otherwise FALSE.
@@ -247,7 +249,7 @@ function islandora_large_image_imagemagick_convert($src, $dest, $args) {
   if (_imagemagick_convert_exec($command, $output, $ret) !== TRUE) {
     watchdog('islandora_large_image',
              'ImageMagick failed to create derivatives<br/>Error: @ret<br/>Command: @command<br/>Output: @output',
-              array('@ret' => $ret, '@command' => $command, '@output' => $output),
+              $array('@ret' => $ret, '@command' => $command, '@output' => $output),
               WATCHDOG_ERROR);
     return FALSE;
   }
@@ -288,6 +290,8 @@ function islandora_large_image_add_datastream(AbstractFedoraObject $object, $dsi
 
 /**
  * Return preconfigured paramaters for ImageMagick JP2 creation.
+ * @return array
+ *
  */
 function islandora_large_image_get_args() {
 
