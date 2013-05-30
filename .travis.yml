@@ -14,8 +14,8 @@ before_install:
   - $HOME/islandora/tests/scripts/travis_setup.sh
   - cd $HOME/drupal-*
   - ln -s $TRAVIS_BUILD_DIR sites/all/modules/islandora_solution_pack_large_image
-  # - drush en --yes imagemagick
-  - drush en --yes islandora_large_image
+  # - drush en --yes imagemagicks
+  - drush en --user=1 --yes islandora_large_image
 script:
   - ant -buildfile sites/all/modules/islandora_solution_pack_large_image/build.xml lint
   - drush coder-review --reviews=production,security,style,i18n,potx,sniffer islandora_large_image
