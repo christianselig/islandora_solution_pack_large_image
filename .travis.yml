@@ -10,7 +10,8 @@ env:
 before_install:
   - cd $HOME
   - git clone -b 7.x git://github.com/Islandora/islandora.git
-  - sh adore-djakdsota-install.sh
+  - chmod +x adore-djakota-install.sh
+  - sh adore-djakota-install.sh
   - export ISLANDORA_DIR=$HOME/islandora
   - $HOME/islandora/tests/scripts/travis_setup.sh
   - cd $HOME/drupal-*
