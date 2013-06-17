@@ -32,7 +32,7 @@ class IslandoraLargeImageIngestTestCase extends IslandoraCollectionWebTestCase {
      'islandora_large_image',
      'islandora_basic_collection',
      'imagemagick',
-     ));
+    ));
   }
 
   /**
