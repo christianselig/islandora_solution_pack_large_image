@@ -37,7 +37,7 @@ function islandora_large_image_create_all_derivatives(AbstractObject $object, $f
  * Fetches the upload image file from Fedora, and saves it to a temp location.
  *
  * @param AbstractObject $object
- *  The object to fetch the uploaded image file from.
+ *   The object to fetch the uploaded image file from.
  * @param string $base_name
  *   The base name to use in creating temp files.
  *
@@ -70,7 +70,7 @@ function islandora_large_image_get_uploaded_file(AbstractObject $object, $base_n
  */
 function islandora_large_image_create_JP2_derivative(AbstractObject $object, $uploaded_file, $base_name, $force = TRUE) {
   if ($force || !isset($object['JP2'])) {
-    // create JP2 with kakadu
+    // Create JP2 with kakadu.
     module_load_include('inc', 'islandora_large_image', 'includes/utilities');
     $kakadu = variable_get('islandora_use_kakadu', !islandora_large_image_check_imagemagick_for_jpeg2000());
     $mime = strtolower($object['OBJ']->mimetype);
@@ -79,11 +79,12 @@ function islandora_large_image_create_JP2_derivative(AbstractObject $object, $up
     }
 
     if ($kakadu) {
-      $derivative_file = islandora_large_image_kdu_compress($uploaded_file, "temporary://{$base_name}_JP2.jp2"); // Create JP2
+       // Create JP2.
+      $derivative_file = islandora_large_image_kdu_compress($uploaded_file, "temporary://{$base_name}_JP2.jp2");
       if (!$derivative_file) {
         drupal_set_message(t("Kakadu failed. Trying ImageMagick ..."));
         // Force retry with ImageMagick if Kakadu has failed.
-        $kakadu = FALSE; 
+        $kakadu = FALSE;
       }
     }
     if (!$kakadu) {
@@ -243,10 +244,6 @@ function islandora_large_image_kdu_compress($src, $dest, $args = NULL) {
  *   The source file uri to convert from.
  * @param string $dest
  *   The destination file uri to convert into.
- * @param int $width
- *   The source file to convert from.
- * @param int $height
- *   The destination file to convert into.
  *
  * @return string
  *   The destination file path if successful otherwise FALSE.
@@ -309,8 +306,9 @@ function islandora_large_image_add_datastream(AbstractObject $object, $dsid, $fi
 
 /**
  * Return preconfigured paramaters for ImageMagick JP2 creation.
- * @return array
  *
+ * @return array
+ *   Preconfigured paramaters for ImageMagick JP2 creation.
  */
 function islandora_large_image_get_args() {
 
@@ -401,4 +399,3 @@ function islandora_large_image_get_identify() {
 
   return $identify;
 }
-
